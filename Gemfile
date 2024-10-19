@@ -5,3 +5,5 @@ gem "pry-byebug"
 gem "dotenv"
 gem "http"
 gem "json"
+gem "ruby-openai"
+
