@@ -19,16 +19,17 @@ parsed_response = JSON.parse(response)
 
 #pp parsed_response
 
-latitude =  parsed_response.fetch("results").at(0).fetch("geometry").fetch("bounds").fetch("northeast").fetch("lat") 
 
-longitude =  parsed_response.fetch("results").at(0).fetch("geometry").fetch("bounds").fetch("northeast").fetch("lng") 
+latitude =  parsed_response.fetch("results").at(0).fetch("geometry").fetch("location").fetch("lat") 
+
+longitude =  parsed_response.fetch("results").at(0).fetch("geometry").fetch("location").fetch("lng") 
 
 
 # find weather
 pirate_weather_api_key = ENV.fetch("WEATHER_KEY")
 
 # Assemble the full URL string by adding the first part, the API token, and the last part together
-pirate_weather_url = "https://api.pirateweather.net/forecast/" + WEATHER_KEY + "/" + latitude + "," + longitude
+pirate_weather_url = "https://api.pirateweather.net/forecast/" + pirate_weather_api_key + "/" + latitude.to_s + "," + longitude.to_s
 
 # Place a GET request to the URL
 raw_response = HTTP.get(pirate_weather_url)
